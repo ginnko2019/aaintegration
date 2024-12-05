@@ -31,6 +31,7 @@ public class ChatGPTController {
 
     @PostMapping("/generate")
     public ResponseEntity<String> generateResponse(@RequestBody String input) {
+        System.out.println("OpenIA");
         try {
             // Construye el cuerpo de la solicitud
             String requestBody = buildRequestPayload(input);
@@ -65,7 +66,7 @@ public class ChatGPTController {
                 "messages", List.of(
                         Map.of("role", "user", "content", input)
                 ),
-                "max_tokens", 100,
+                "max_tokens", 1000,
                 "temperature", 0.7
         );
 

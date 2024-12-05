@@ -24,7 +24,7 @@ public class CopilotController {
 
     @PostMapping("/generate")
     public ResponseEntity<String> generateResponse(@RequestBody String input) {
-        
+        System.out.println("Azure OpenAI");
         try {
             // Construye el cuerpo de la solicitud
             String requestBody = buildRequestPayload(input);
@@ -39,11 +39,11 @@ public class CopilotController {
                     .bodyToMono(String.class)
                     .block();
 
-            return ResponseEntity.ok("Respuesta de Copilot: " + response);
+            return ResponseEntity.ok(response);
 
         } catch (WebClientResponseException e) {
             // Maneja errores específicos de Copilot
-            System.err.println("Error al comunicarse con Copilot: " + e.getResponseBodyAsString());
+            System.err.println("Error al comunicarse con Azure OpenIA: " + e.getMessage());
             return ResponseEntity.status(e.getStatusCode()).body("Error al comunicarse con Azure OAI: " + e.getResponseBodyAsString());
         } catch (Exception e) {
             // Manejo de errores generales
@@ -54,10 +54,14 @@ public class CopilotController {
 
     private String buildRequestPayload(String input) {
         // Construye el cuerpo del JSON para la API de Copilot
-        return "{ " +
-                "\"model\": \"gpt-4o-mini\", " +
-                "\"messages\": [{ \"role\": \"user\", \"content\": \"" + input + "\" }], " +
-                "\"temperature\": 0.7 " +
-                "}";
+        return """
+        {
+            "messages": [
+                { "role": "user", "content": "%s" }
+            ],
+            "temperature": 0.7,
+            "max_tokens": 1000
+        }
+        """.formatted(input);
     }
 }

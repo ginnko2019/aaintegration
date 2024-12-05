@@ -17,9 +17,9 @@ public class InputAnalyzer {
 
     public static boolean isCode(String input) {
         if (chatGptAdapter != null) {
-            String query = "Esto es código? " + input;
+            String query = "Esto es código o tiene que ver con código? Responde si o no sin mas texto" + input;
             String response = chatGptAdapter.generateResponse(query);
-            return response.toLowerCase().contains("sí");
+            return (extractContentFromResponse(response).toLowerCase().contains("sí")) ;
         }
         return false;
     }
@@ -28,12 +28,11 @@ public class InputAnalyzer {
         return input.replaceAll("[^a-zA-Z0-9\\s]", "").trim();
     }
     
-    public static String improveInput(String input) {
-        if (chatGptAdapter != null && input.length() < 100) {
+    public static String improveInput(String input, Boolean isCode) {
+        if (chatGptAdapter != null && input.length() < 100 && !isCode) {
             String query = "Mejora esta entrada como un prompt para una IA: " + input;
             String response = chatGptAdapter.generateResponse(query);
             String content = extractContentFromResponse(response);
-            System.out.println(content);
             return content != null ? content : input;
         }
         return input;

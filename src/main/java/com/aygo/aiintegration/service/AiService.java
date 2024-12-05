@@ -23,7 +23,7 @@ public class AiService {
     public String generateResponse(String input) {
         String cleanedInput = InputAnalyzer.cleanInput(input);
         boolean isCode = InputAnalyzer.isCode(cleanedInput);
-        String newInput = InputAnalyzer.improveInput(cleanedInput);
+        String newInput = InputAnalyzer.improveInput(cleanedInput, isCode);
         return adapters.stream()
                 .filter(adapter -> isCode ? adapter.getEstado().equals("código") : adapter.getEstado().equals("general"))
                 .findFirst()
