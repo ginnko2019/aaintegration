@@ -1,7 +1,9 @@
 # AIintegration
+## ESCUELA COLOMBIANA DE INGENIERÍA - AYGO
 
 # Diagrama de Arquitectura
-ESCUELA COLOMBIANA DE INGENIERÍA - CICLOS DE VIDA DE DESARROLLO DE SOFTWARE
+
+ ![image](https://github.com/ginnko2019/aaintegration/blob/master/Assets/ArquitecturaAiintegrationS.jpg)
 
 ## AWS S3: 
 Servicio de AWS empleado para el despliegue del front-end. Este servicio se emplea comúnmente para alojar documentos. Cómo el front-end posee tecnologías simples es perfecto para poderlo alojar y desplegar.
@@ -19,6 +21,11 @@ comprensión de lenguaje y otras funcionalidades de IA en aplicaciones y sistema
 de herramientas proporcionadas por OpenAI que permite a desarrolladores y empresas acceder, integrar y utilizar modelos de inteligencia artificial avanzados en sus aplicaciones y
 servicios. Esta plataforma ofrece una variedad de productos y APIs, facilitando el desarrollo de soluciones basadas en
 inteligencia artificial.
+
+# Diagrama de Clases
+
+ ![image](https://github.com/ginnko2019/aaintegration/blob/master/Assets/AIIntegrationDiagramClass.jpg)
+
 # Patrones de Software empleados
 Para garantizar una integración adecuada en el prototipo propuesto se emplearon diferentes patrones investigados en el estado del arte de este documento, cada patrón se detallará
 a continuación junto con la forma en que se implementó dentro del software.
